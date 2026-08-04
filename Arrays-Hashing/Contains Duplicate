@@ -1,0 +1,17 @@
+/*
+Problem: Contains Duplicate
+Pattern: Arrays & Hashing
+Time Complexity: O(n)
+Space Complexity: O(n)
+*/class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        Set<Integer> st=new LinkedHashSet<>();
+        for(int i=0;i<nums.length;i++){
+            if(st.contains(nums[i])){
+                return true;
+            }
+            st.add(nums[i]);
+        }
+        return false;
+    }
+}
