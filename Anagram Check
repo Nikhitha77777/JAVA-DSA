@@ -1,0 +1,24 @@
+/*
+Problem: Valid Anagram
+Pattern: Arrays & Hashing
+Time Complexity: O(n)
+Space Complexity: O(n)
+*/
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        Map<Character,Integer> m1=new HashMap<>();
+        
+        for(int i=0;i<s.length();i++){
+            m1.put(s.charAt(i),m1.getOrDefault(m1,0)+1);
+        }
+        for(int j=0;j<t.length();j++){
+            m1.put(t.charAt(j),m1.getOrDefault(m1,0)-1);
+        }
+        for(Map.Entry<Character,Integer> mp:m1.entrySet()){
+            if(mp.getValue()!=0){
+                return false;
+            }
+        }
+        return true;
+    }
+}
