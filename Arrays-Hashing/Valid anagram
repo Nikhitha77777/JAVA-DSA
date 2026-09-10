@@ -1,24 +1,84 @@
 /*
 Problem: Valid Anagram
 Pattern: Arrays & Hashing
-Time Complexity: O(n)
-Space Complexity: O(n)
+*/
+
+/*
+Brute Force
+Time Complexity: o(n logn)
+Space Complexity: o(n)
 */
 class Solution {
     public boolean isAnagram(String s, String t) {
-        Map<Character,Integer> m1=new HashMap<>();
-        
+        if(s.length()!=t.length()){
+            return false;
+        }
+        s=s.toLowerCase();
+        t=t.toLowerCase();
+        char[] cs=s.toCharArray();
+        char[] ct=t.toCharArray();
+        Arrays.sort(cs);
+        Arrays.sort(ct);
         for(int i=0;i<s.length();i++){
-            m1.put(s.charAt(i),m1.getOrDefault(m1,0)+1);
-        }
-        for(int j=0;j<t.length();j++){
-            m1.put(t.charAt(j),m1.getOrDefault(m1,0)-1);
-        }
-        for(Map.Entry<Character,Integer> mp:m1.entrySet()){
-            if(mp.getValue()!=0){
+            if(cs[i]!=ct[i]){
                 return false;
             }
         }
         return true;
     }
 }
+
+/*
+Using HashMap
+Time Complexity : o(n)
+Space Copmlexity : o(n)
+*/
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        if(s.length()!=t.length()){
+            return false;
+        }
+        Map<Character,Integer> map=new HashMap<>();
+        for(int i=0;i<s.length();i++){
+            map.put(s.charAt(i),map.getOrDefault(s.charAt(i),0)+1);
+            map.put(t.charAt(i),map.getOrDefault(t.charAt(i),0)-1);
+        }
+
+        for(Map.Entry<Character,Integer> m:map.entrySet()){
+            if(m.getValue()!=0){
+                return false;
+            }
+        }
+        return true;
+    }
+}
+/*
+Using Frequency Array Best
+Time Complexity : o(n)
+Space Complexity : o(n)
+*/
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        
+        if(s.length()!=t.length()){
+            return false;
+        }
+        int[] freq=new int[26];
+        s=s.toLowerCase();
+        t=t.toLowerCase();
+
+        for(int i=0;i<s.length();i++){
+            freq[s.charAt(i)-'a']++;
+            freq[t.charAt(i)-'a']--;
+        }
+
+        for(int i=0;i<26;i++){
+            if(freq[i]!=0){
+                return false;
+            }
+        }
+        return true;
+
+    }
+}
+
