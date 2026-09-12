@@ -5,8 +5,8 @@ Pattern: Arrays & Hashing
 
 /*
 Brute Force
-Time Complexity : 
-Space Complexity : 
+Time Complexity : o(n)
+Space Complexity : o(n)
 */
 
 class Solution {
