@@ -4,6 +4,26 @@ Group Anagrams
 */
 
 /*
+Hash Map
+*/
+class Main {
+    public static void main(String[] args) {
+       Map<String,List<String>> map=new HashMap<>();
+        String str[]={"eat","tea","tan","ate","nat","bat"};
+        for(String s:str){
+            char c[]=s.toCharArray();
+            Arrays.sort(c);
+            String t=String.valueOf(c);
+            if(!map.containsKey(t)){
+                map.put(t,new ArrayList<>());
+            }
+            map.get(t).add(s);
+        }
+        System.out.println(map);
+    }
+}
+
+/*
 Optimal
 Time Complexity : o(n * k log k)
 Space Complexity : o(nk)
